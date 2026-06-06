@@ -66,7 +66,7 @@ export default function ProfileScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   root: { backgroundColor: "#fff" },
   container: {
     padding: 20,
