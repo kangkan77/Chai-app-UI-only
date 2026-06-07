@@ -5,12 +5,12 @@ import {
   ScrollView,
   TextInput,
   Image,
+  KeyboardAvoidingView,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Button } from "@react-navigation/elements";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-
 
 const users = [
   {
@@ -97,7 +97,8 @@ const users = [
 
 const HomeScreen = () => {
   return (
-        <ScrollView style={{ flex: 1, padding: 15 }}>
+    <ScrollView style={{ flex: 1, padding: 15 }}>
+      <KeyboardAvoidingView>
       <StatusBar />
       <View style={{ marginVertical: 10 }}>
         <Text style={{ fontSize: 24, fontWeight: 700, fontFamily: "times" }}>
@@ -140,29 +141,58 @@ const HomeScreen = () => {
 
       {/* names */}
       {users.map((data) => {
-        return (<View>
-        <View style={{width: "100%" , height: 90, backgroundColor: "", flexDirection: "row", alignItems: "center", gap: 10}}>
-          <Image
-            source={{
-              uri: `${data.image}`,
-            }}
-            style={{width: 60, height: 60, borderRadius: 100}}
-          />
-          <View style={{backgroundColor: "", paddingVertical: 0,}}>
-            <Text style={{fontSize: 22, marginBottom: 2, fontWeight: 600}}>{data.name}</Text>
-            <Text style={{fontSize: 14, fontWeight: 500, marginBottom:3, width: "100%"}}>{data.profession}</Text>
-            <Text style={{fontSize: 14 , color: "#666"}}><Ionicons name="location"  size={20}/>{data.location}</Text>
+        return (
+          <View>
+            <View
+              key={data.id}
+              style={{
+                width: "100%",
+                height: 90,
+                backgroundColor: "",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 10,
+              }}
+            >
+              <Image
+                source={{
+                  uri: `${data.image}`,
+                }}
+                style={{ width: 60, height: 60, borderRadius: 100 }}
+              />
+              <View style={{ backgroundColor: "", paddingVertical: 0 }}>
+                <Text
+                  style={{ fontSize: 22, marginBottom: 2, fontWeight: 600 }}
+                >
+                  {data.name}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 500,
+                    marginBottom: 3,
+                    width: "100%",
+                  }}
+                >
+                  {data.profession}
+                </Text>
+                <Text style={{ fontSize: 14, color: "#666" }}>
+                  <Ionicons name="location" size={20} />
+                  {data.location}
+                </Text>
+              </View>
+            </View>
+            <View
+              style={{ width: "100%", backgroundColor: "#1111112f", height: 1 }}
+            />
           </View>
-        </View>
-      <View style={{width: "100%", backgroundColor: "#1111114a", height: 1}} />
-      </View>
-        )
+        );
       })}
-
+      </KeyboardAvoidingView>
     </ScrollView>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
